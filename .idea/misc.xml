@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/VideoParent/Video-Web" />
+  </component>
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/VideoParent/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectResources">
+    <resource url="http://www.springframework.org/schema/beans" location="D:/m3/spring-framework-5.0.2.RELEASE-schema/beans/spring-beans.xsd" />
+    <resource url="http://www.springframework.org/schema/context" location="D:/m3/spring-framework-5.0.2.RELEASE-schema/context/spring-context.xsd" />
+    <resource url="http://www.springframework.org/schema/mvc" location="D:/m3/spring-framework-5.0.2.RELEASE-schema/mvc/spring-mvc.xsd" />
+  </component>
+  <component name="ProjectRootManager">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+</project>

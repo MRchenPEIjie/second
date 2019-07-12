@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcy.video.mapper.SpeakerMapper">
+    <!--作用是告诉mybatis框架，实体中的哪个属性和数据库中的哪个字段是照应的-->
+    <!--如果数据库中的某些字段和实体中的某些字段不一致，是否可以不写一致的字段，只写不一致的字段呢？-->
+    <resultMap id="speakerMap" type="speaker">
+        <id property="id" column="id"/><!--主键-->
+        <result property="speakerName" column="speaker_name" />
+        <result property="speakerDesc" column="speaker_desc"/>
+        <result property="headImgUrl" column="head_img_url"/>
+        <result property="speakerJob" column="speaker_job"/>
+    </resultMap>
+    <select id="selectAllSpeaker"  resultMap="speakerMap">
+         select *,speaker_name from speaker
+    </select>
+</mapper>

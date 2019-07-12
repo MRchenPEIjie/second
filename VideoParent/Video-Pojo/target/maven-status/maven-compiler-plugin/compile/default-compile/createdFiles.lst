@@ -1,0 +1,7 @@
+com\xcy\video\pojo\Admin.class
+com\xcy\video\pojo\Video.class
+com\xcy\video\pojo\Course.class
+com\xcy\video\pojo\Subject.class
+com\xcy\video\pojo\Speaker.class
+com\xcy\video\pojo\VideoQueryVo.class
+com\xcy\video\pojo\User.class

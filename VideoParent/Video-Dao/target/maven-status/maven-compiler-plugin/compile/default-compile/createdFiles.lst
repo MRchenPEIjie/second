@@ -1,0 +1,6 @@
+com\xcy\video\mapper\SubjectMapper.class
+com\xcy\video\mapper\CourseMapper.class
+com\xcy\video\mapper\AdminMapper.class
+com\xcy\video\mapper\VideoMapper.class
+com\xcy\video\mapper\SpeakerMapper.class
+com\xcy\video\mapper\UserMapper.class

@@ -1,0 +1,15 @@
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:40 +0800] "GET /video HTTP/1.1" 302 - http-bio-8080-exec-1 0
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:40 +0800] "GET /video/ HTTP/1.1" 200 14483 http-bio-8080-exec-3 138
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:41 +0800] "GET /video/js/index.js HTTP/1.1" 200 6756 http-bio-8080-exec-4 41
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:41 +0800] "GET /video/img/logo.png HTTP/1.1" 304 - http-bio-8080-exec-2 7
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:41 +0800] "GET /video/img/%E5%BE%AE%E4%BF%A1%E5%85%AC%E4%BC%97%E5%8F%B7.png HTTP/1.1" 304 - http-bio-8080-exec-6 9
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:41 +0800] "GET /video/img/%E5%BE%AE%E5%8D%9A%E5%85%AC%E4%BC%97%E5%8F%B7.png HTTP/1.1" 304 - http-bio-8080-exec-5 9
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:41 +0800] "GET /video/favicon.png HTTP/1.1" 404 2959 http-bio-8080-exec-8 17
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:42 +0800] "GET /Videos/img/nav_down2.png HTTP/1.1" 404 - http-bio-8080-exec-9 0
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:20:53:42 +0800] "GET /Videos/img/nav_down.png HTTP/1.1" 404 - http-bio-8080-exec-10 0
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:21:03:44 +0800] "GET /video HTTP/1.1" 302 - http-bio-8080-exec-3 0
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:21:03:44 +0800] "GET /video/ HTTP/1.1" 200 14483 http-bio-8080-exec-3 10
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:21:03:57 +0800] "GET /video/course/list?subjectId=10 HTTP/1.1" 200 168 http-bio-8080-exec-6 1055
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:21:03:57 +0800] "GET /video/images/error.jpg HTTP/1.1" 200 24933 http-bio-8080-exec-6 11
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:21:04:03 +0800] "POST /video/user/loginUser HTTP/1.1" 200 4 http-bio-8080-exec-4 10603
+0:0:0:0:0:0:0:1 - - [09/Jul/2019:21:04:03 +0800] "POST /video/user/loginUser HTTP/1.1" 200 4 http-bio-8080-exec-3 11709

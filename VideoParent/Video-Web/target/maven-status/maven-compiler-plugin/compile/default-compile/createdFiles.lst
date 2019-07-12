@@ -1,0 +1,8 @@
+com\xcy\video\controller\CourseController.class
+com\xcy\video\controller\LoginController.class
+com\xcy\video\controller\SpeakerController.class
+com\xcy\video\controller\VideoController.class
+com\xcy\video\controller\UserController.class
+com\xcy\video\interceptor\AfterLoginInteceptor.class
+com\xcy\video\exception\MyException.class
+com\xcy\video\exception\MyExceptionResolver.class

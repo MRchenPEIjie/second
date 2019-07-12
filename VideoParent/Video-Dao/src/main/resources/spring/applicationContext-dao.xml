@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <context:property-placeholder location="classpath:mybatis/db.properties"/>
+
+    <!--spring和mybatis整合，整合什么？  就是将SqlMapConfig中的配置文件转移到spring配置文件的过程
+        1、数据源之前写在SqlMapConfig下，现在交给spring容器
+        2、手动创建SqlSessionFactory ，现在交给spring
+        3、之前SqlMapConfig 主动加载xxxMapper.xml ，现在交给spring
+        4、起别名，加载db.properties配置文件
+    -->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
+        -->
+        <!--DI  依赖注入  如果依赖注入的是一个实例化对象的话，需要使用ref-->
+        <property name="dataSource" ref="dataSource"/>
+        <!--给实体起别名-->
+        <property name="typeAliasesPackage" value="com.xcy.video.pojo"/>
+
+        <!--如果mybatis的分页插件和spring整合后，需要按照如下配置-->
+        <property name="plugins">
+            <array>
+                <bean class="com.github.pagehelper.PageInterceptor">
+                    <property name="properties">
+                        <!--使用下面的方式配置参数，一行配置一个 -->
+                        <value>
+                            helperDialect=mysql
+                            reasonable=true
+                        </value>
+                    </property>
+                </bean>
+            </array>
+        </property>
+
+    </bean>
+
+    <!--扫描该文件夹下的配置文件，并创建动态代理对象-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.xcy.video.mapper"/>
+    </bean>
+
+</beans>

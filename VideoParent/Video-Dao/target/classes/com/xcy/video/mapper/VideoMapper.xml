@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xcy.video.mapper.VideoMapper">
+
+    <resultMap id="videoMap" type="video">
+        <!--
+           resultMap中不是所有字段都要进行映射，数据库中和实体中字段名称相同的，可以不写
+           如果id名称和实体名称一样，也一样可以省略不映射
+           column 到底和谁照应？数据库 or 别名？
+              别名，所谓别名就是说跟你结果集上的名字保持一致
+        -->
+        <id property="id" column="id"></id>
+        <result property="title" column="title"></result>
+        <result property="detail" column="detail"/>
+        <result property="time" column="time"/>
+        <result property="spearkerId" column="spearker_id"/>
+        <result property="courseId" column="course_id"/>
+        <result property="videoUrl" column="video_url"/>
+        <result property="imageUrl" column="image_url"/>
+        <result property="playNum" column="play_num"/>
+        <!--<result property="speakerName" column="speaker2"/>-->
+        <association property="speaker" javaType="speaker">
+            <id property="id" column="sid"/>
+            <result property="speakerName" column="speaker_name"/>
+            <result property="speakerDesc" column="speaker_desc"/>
+            <result property="headImgUrl" column="head_img_url"/>
+        </association>
+    </resultMap>
+    <!--sql片段，可以将一些公共的sql，编写成sql片段，便于简化我们的xml配置文件-->
+    <sql id="videoSql">
+        select v.*,s.speaker_name as speakerName   from video v left join speaker s on  v.spearker_id = s.id
+    </sql>
+    <sql id="whereSql">
+        <where>
+            <if test="title != null and title !=''">
+                and title like '%${title}%'
+            </if>
+            <if test="speakerId != 0">
+                and spearker_id = #{speakerId}
+            </if>
+            <if test="courseId != 0">
+                and course_id = #{courseId}
+            </if>
+        </where>
+    </sql>
+    <select id="selectVideoList" parameterType="videoQueryVo" resultMap="videoMap">
+        
+        <include refid="videoSql"></include>
+        <!--如果是#{} 不能左右两边直接拼接，要么使用函数，要么使用${}
+        and title like CONCAT('%',#{title},'%') 或者
+        and title like '%${title}%'
+        -->
+        <include refid="whereSql"></include>
+          limit  #{begin},#{rows}
+    </select>
+
+    <delete id="batchDeleteVideos" parameterType="videoQueryVo">
+
+      delete from video where
+    <if test="idList != null and idList.size() != 0">
+        <foreach collection="idList" item="sid" open=" id in (" close=")" separator=",">
+            #{sid}
+        </foreach>
+    </if>
+
+    </delete>
+
+    <select id="getCount" parameterType="videoQueryVo" resultType="int">
+        select count(1) from video
+        <include refid="whereSql"></include>
+    </select>
+
+    <insert id="saveVideo" parameterType="video" >
+      <selectKey keyColumn="id" resultType="int" keyProperty="id" order="AFTER">
+          select LAST_INSERT_ID()
+      </selectKey>
+        insert into video (id, title, time,
+          spearker_id, course_id, video_url,
+           image_url, play_num, detail)
+        values (null, #{title}, #{time},
+          #{spearkerId}, #{courseId}, #{videoUrl},
+          #{imageUrl}, #{playNum}, #{detail}
+      )
+    </insert>
+
+    <select id="getVideoById" resultMap="videoMap" parameterType="int">
+        select v.*,s.*,s.id as sid from video v left join speaker s on v.spearker_id = s.id where v.id = #{id}
+    </select>
+
+    <update id="updateVideoById" parameterType="video">
+        update video
+        set
+          title = #{title},
+          time = #{time},
+          spearker_id = #{spearkerId},
+          course_id = #{courseId},
+          video_url = #{videoUrl},
+          image_url = #{imageUrl},
+          detail = #{detail}
+          where id = #{id}
+    </update>
+
+    <select id="selectVideoListByCourseId" parameterType="int" resultMap="videoMap">
+        select * from video where course_id = #{id}
+    </select>
+</mapper>
